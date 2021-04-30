@@ -32,12 +32,12 @@ jobs:
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
         pipenv install --deploy
-    - name: Run linter
-      run: |
-        pipenv run lint
-    - name: Run formatting check
-      run: |
-        pipenv run format --check
+    # - name: Run linter
+    #   run: |
+    #     pipenv run lint
+    # - name: Run formatting check
+    #   run: |
+    #    pipenv run format --check
     - name: Python run
       run: |
         pipenv run python .\rockband.py
