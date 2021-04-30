@@ -17,7 +17,7 @@ def load_work(config_file = './config.yaml'):
 
 def submit_request(song, artist, url='www.harmonixmusic.com/games/rock-band/request'):
     logging.info(f"Logging into {url}")
-    start_chrome(url)
+    start_chrome(url, headless=True)
     write(song, into='Song Title')
     write(artist, into='Artist')
     logging.info(f"Submitting request for '{song}' by '{artist}'")
