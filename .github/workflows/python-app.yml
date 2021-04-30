@@ -40,4 +40,4 @@ jobs:
     #    pipenv run format --check
     - name: Python run
       run: |
-        pipenv run python .\rockband.py
+        pipenv run python rockband.py
