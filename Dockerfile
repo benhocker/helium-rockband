@@ -10,6 +10,9 @@ ENV WORKON_HOME /root
 # and `docker run`, this ensures we always use the same Pipfile)
 ENV PIPENV_PIPFILE /Pipfile
 
+# Install chrome
+RUN apt-get install chrome
+
 COPY rockband.py /
 COPY Pipfile /
 COPY Pipfile.lock /
@@ -19,4 +22,4 @@ COPY config.yaml /
 RUN pip install 'pipenv==2018.11.26'
 RUN pipenv install --deploy --ignore-pipfile
 
-ENTRYPOINT ["pipenv", "run", "python", "./main.py"
+ENTRYPOINT ["pipenv", "run", "python", "./rockband.py"
