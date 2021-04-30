@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 helium = "*"
+pyyaml = "*"
 
 [dev-packages]
 
