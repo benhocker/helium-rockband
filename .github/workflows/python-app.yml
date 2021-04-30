@@ -40,4 +40,5 @@ jobs:
     #    pipenv run format --check
     - name: Python run
       run: |
+        apt-get install chrome
         pipenv run python rockband.py
