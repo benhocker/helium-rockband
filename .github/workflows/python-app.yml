@@ -43,8 +43,9 @@ jobs:
     - name: Run formatting check
       run: |
         pipenv run format --check
-    - name: Yaml-Checker
-      uses: leon-th/yaml-checker@v1.0.0
+    - name: YAML Lint
+      run: |
+        yamllint --strict --format github .
     - name: Python run
       run: |
         pipenv run python rockband.py
