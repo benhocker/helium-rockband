@@ -39,7 +39,7 @@ jobs:
         pipenv install --deploy
     - name: Run linter
       run: |
-        pipenv run lint
+        pipenv run pylint rockband.py
     - name: Run formatting check
       run: |
         pipenv run format --check

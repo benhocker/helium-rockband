@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 helium = "*"
 pyyaml = "*"
+pylint = "*"
 
 [dev-packages]
 
