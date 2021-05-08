@@ -37,6 +37,9 @@ jobs:
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
         pipenv install --deploy
+    - name: Check for Pip Vulnerabilities
+      run: |
+        pipenv check
     - name: Run linter
       run: |
         pipenv run pylint rockband.py
