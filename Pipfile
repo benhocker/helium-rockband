@@ -5,10 +5,19 @@ name = "pypi"
 
 [packages]
 helium = "*"
-pyyaml = "*"
-pylint = "*"
 
 [dev-packages]
+flake8 = "*"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+all = "echo run this command to run all: 'pipenv run flake; pipenv run lint; pipenv run test'"
+flake = "pipenv run flake8 --exclude=venv* --statistics"
+lint = "pylint rockband.py"
+test = "pytest -v --cov ."

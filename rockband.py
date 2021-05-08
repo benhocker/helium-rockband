@@ -1,6 +1,4 @@
 #!/usr/bin/python
-# pylint: disable=unused-wildcard-import
-# pylint: disable=wildcard-import
 
 "This script logs into the Rock Band website and requests new songs"
 
@@ -9,17 +7,23 @@ import logging
 import sys
 
 # 3rd Party Libs
-from helium import *
+from helium import start_chrome, write, click, kill_browser
 import yaml
 
-def load_work(config_file = './config.yaml'):
+
+def load_work(config_file='./config.yaml'):
     "Loads yaml config file"
 
-    logging.info("Loading %s". config_file) # pylint: disable=E1101
+    logging.info("Loading %s". config_file)
     with open(config_file, 'r') as file_reader:
         return yaml.load(file_reader)['songs']
 
-def submit_request(song, artist, url='www.harmonixmusic.com/games/rock-band/request'):
+
+def submit_request(
+                    song,
+                    artist,
+                    url='www.harmonixmusic.com/games/rock-band/request'
+                  ):
     "Uses helium framework to open chrome, open a website, and submit a song"
 
     logging.info("Logging into %s", url)
@@ -29,6 +33,7 @@ def submit_request(song, artist, url='www.harmonixmusic.com/games/rock-band/requ
     logging.info("Submitting request for '%s' by '%s'", song, artist)
     click('Submit')
     kill_browser()
+
 
 def main():
     "This is the main method"
@@ -41,7 +46,9 @@ def main():
     logging.info('Entering main')
     song_list = load_work()
     for song_info in song_list:
-        logging.debug("Song: %s, Artist: %s", song_info['song'], song_info['artist'])
+        logging.debug("Song: %s, Artist: %s",
+                      song_info['song'],
+                      song_info['artist'])
         submit_request(
             song_info['song'],
             song_info['artist']
@@ -49,6 +56,7 @@ def main():
 
     # Stop logging and clean up
     logging.shutdown()
+
 
 if __name__ == "__main__":
     sys.exit(main())
