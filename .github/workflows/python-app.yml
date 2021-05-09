@@ -48,7 +48,7 @@ jobs:
         pipenv run flake
     - name: YAML Lint
       run: |
-        yamllint --strict --format github .
+        yamllint --strict --format github ./config.yaml
     - name: Python run
       run: |
         pipenv run python rockband.py
