@@ -13,9 +13,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.9
@@ -29,7 +27,7 @@ jobs:
         sudo dpkg -i google-chrome-stable_current_amd64.deb
     - name: Install pipenv
       run: |
-        python -m pip install --upgrade pipenv wheel
+        python -m pip install --upgrade pip pipenv wheel
     - id: cache-pipenv
       uses: actions/cache@v1
       with:
@@ -38,13 +36,19 @@ jobs:
     - name: Install dependencies
       if: steps.cache-pipenv.outputs.cache-hit != 'true'
       run: |
-        pipenv install --deploy
-    # - name: Run linter
-    #   run: |
-    #     pipenv run lint
-    # - name: Run formatting check
-    #   run: |
-    #    pipenv run format --check
+        pipenv install --deploy --dev
+    - name: Check for Pip Vulnerabilities
+      run: |
+        pipenv check
+    - name: Run linter
+      run: |
+        pipenv run lint
+    - name: Run formatting check (flake8)
+      run: |
+        pipenv run flake
+    - name: YAML Lint
+      run: |
+        yamllint --strict --format github ./config.yaml
     - name: Python run
       run: |
         pipenv run python rockband.py
