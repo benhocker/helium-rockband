@@ -14,7 +14,7 @@ import yaml
 def load_work(config_file='./config.yaml'):
     "Loads yaml config file"
 
-    logging.info("Loading %s". config_file)
+    logging.info("Loading %s". config_file)  # pylint: disable=no-member
     with open(config_file, 'r') as file_reader:
         return yaml.load(file_reader)['songs']
 
