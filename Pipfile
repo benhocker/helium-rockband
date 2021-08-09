@@ -12,6 +12,7 @@ pylint = "*"
 pytest = "*"
 pytest-cov = "*"
 pyyaml = "*"
+black = "*"
 
 [requires]
 python_version = "3.9"
@@ -21,3 +22,6 @@ all = "echo run this command to run all: 'pipenv run flake; pipenv run lint; pip
 flake = "pipenv run flake8 --exclude=venv* --statistics"
 lint = "pylint rockband.py"
 test = "pytest -v --cov ."
+
+#[pipenv]
+#allow_prereleases = true
